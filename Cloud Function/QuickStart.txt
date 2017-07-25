@@ -4,4 +4,47 @@ Ref : https://firebase.google.com/docs/functions/get-started
 ==============================================
 
 Create New Project 
-  - npm install -g save firebase tools
+**********************************************
+This installs the globally available firebase command. To update to the latest version, rerun the same command.
+  - npm install -g -save firebase tools
+ 
+In many cases, new features and bug fixes are available only with the latest version of the Firebase CLI and firebase-functions SDK. It's a good practice to frequently update both the Firebase CLI and the SDK with these commands inside the functions folder of your Firebase project:
+  - npm install --save firebase-functions
+  - npm install -g firebase-tools
+
+
+Init project
+   - firebase login            // Goto login via the browser and authenticate the firebase tool.
+   - firebase init functions.  // The tool gives you an option to install dependencies with npm. It is safe to decline if you want to manage dependencies in another way.
+
+Run 
+   
+   - firebase deploy                                // Deploy All Function to Server 
+   - firebase deploy --only function:functionName   // Some Function  to Server 
+
+   - firebase serve --except function               // Deploy & Run On Localhost
+   - firebase serve --help                          // Help
+
+  ** อย่าน้อย ต้องมีการ Export 1 Function Firebase
+
+
+Firebase console
+   - After deploying and executing functions, you can view logs in the Firebase console.
+   - https://console.firebase.google.com/project/---ProjectName---/functions/list
+
+==============================================
+
+
+Note 
+**********************************************
+- exports function หลายๆตัว ก็จะแยกแต่ละ Functions
+   ---> functions : test  : http://localhost:5000/ProjectName/us-centrall/test 
+   ---> functions : test2 : http://localhost:5000/ProjectName/us-centrall/test2
+
+- ถ้ามี error จะมีการ return json ออกมา 
+   ---> {"error":{"code":404,"status":"NOT_FOUND","message":"Function pretest1 in location us-central1 in project timestamp-api-fcab8 does not exist","errors":["Function pretest1 in location us-central1 in project timestamp-api-fcab8 does not exist"]}}
+
+- เวลาเรารัน serve ไปแล้ว เราสามารถกลับมาแก้ไขโค้ตได้ (เหมือนมันเอาไป run ใหม่ (script programming))
+   ---> แต่ ต้องเป็น function ที่ exports ออกมาแล้วน่ะ ถ้าเป็น code ส่วนอื่น ที่นอกเหนือจากนี้ มันจะต้อง except ใหม่
+   ---> ใน function ที่ exports แล้ว จะเพิ่ม code หรือ ออกไป call function ข้างนอก ที่เขียนทีหลังก็ได้
+   

@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>X___X</title>
+	<title>Slim REST Generator : Web Generator code for Slim PHP framework</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://www.samclarke.com/assets/migrating-to-hugo/monokai.css" rel="stylesheet">
 	<style>
+
 		.btn {
 			width: 83.5px !important;
 		}
-
 		.data-input {
 			margin-right: 5px !important;
 			margin-left: 5px !important;
 		}
+
+		.input-group {
+			margin-bottom: 1.5px;
+		}
 	</style>
 
+	<!-- For Google -->
+	<meta name="description" content="Web Generator code for Slim PHP framework" />
+	<meta name="keywords" content="web, api, rest, slim, php, generator, code, html, monokai" />
+
+	<!-- For Facebook -->
+	<meta property="og:title" content="Slim REST Generator" />
+	<meta property="og:type" content="article" />
+	<meta property="og:image" content="https://user-images.githubusercontent.com/24679901/31617369-34c35e40-b2b9-11e7-99f8-d7bab0af0421.png" />
+	<meta property="og:url" content="https://itcss-web-preview.firebaseapp.com/Slim%20REST%20Generator" />
+	<meta property="og:description" content="Web Generator code for Slim PHP framework" />
 </head>
 
 <body>
@@ -23,7 +36,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Slim REST Generator</h1>
-				<small>Generator code for <a href="https://www.slimframework.com/">Slim PHP framework</a></small>
+				<small>Generator code for
+					<a href="https://www.slimframework.com/">Slim PHP framework</a>
+				</small>
 			</div>
 		</div>
 
@@ -32,48 +47,61 @@
 			<div class="col-md-5">
 				<div class="form-group">
 					<div class="form-inline">
-						<input v-model="autoSave" v-bind:id="autoSave" v-on:click="save" type="checkbox" class="data-input" /><label>Save to Local Storage | </label>
-						<input v-model="filter" v-bind:id="filter" v-on:click="save(); generateCode();" type="checkbox" class="data-input" /><label>Filter | </label>
-						<input v-model="tryCatch" v-bind:id="tryCatch" v-on:click="save(); generateCode();" type="checkbox" class="data-input" /><label>Try Catch | </label>
+						<input v-model="autoSave" v-bind:id="autoSave" v-on:click="save" type="checkbox" class="data-input" />
+						<label>Save to Local Storage | </label>
+						<input v-model="filter" v-bind:id="filter" v-on:click="save(); generateCode();" type="checkbox" class="data-input" />
+						<label>Filter | </label>
+						<input v-model="tryCatch" v-bind:id="tryCatch" v-on:click="save(); generateCode();" type="checkbox" class="data-input" />
+						<label>Try Catch | </label>
 						<button v-on:click="reset" class="btn btn-sm btn-danger pull-right">Reset</button>
 					</div>
 				</div>
 
 
-				<div class="form-group">
-					<div class="form-inline">
-						<label>Request Method : </label>
-						<button v-on:click="selectType('GET');" v-bind:class="{ 'btn  btn-success' : btn.GET,    'btn btn-default': !btn.GET }">GET</button>
-						<button v-on:click="selectType('POST')" v-bind:class="{ 'btn btn-success' : btn.POST,   'btn btn-default': !btn.POST }">POST</button>
-						<button v-on:click="selectType('PUT')" v-bind:class="{ 'btn btn-success' : btn.PUT,    'btn btn-default': !btn.PUT }" disabled>PUT</button>
-						<button v-on:click="selectType('DELETE')" v-bind:class="{ 'btn btn-success' : btn.DELETE, 'btn btn-default': !btn.DELETE }"
-						 disabled>DELETE</button>
+				<div class="input-group">
+					<span class="input-group-addon" style="text-align: left;">Request Method</span>
+					<div class="btn-group btn-group-justified">
+						<div class="btn-group">
+							<button v-on:click="selectType('GET');" v-bind:class="{ 'btn btn-success' : btn.GET, 'btn btn-default': !btn.GET }">GET</button>
+						</div>
+						<div class="btn-group">
+							<button v-on:click="selectType('POST')" v-bind:class="{ 'btn btn-success' : btn.POST, 'btn btn-default': !btn.POST }">POST</button>
+						</div>
+						<div class="btn-group">
+							<button v-on:click="selectType('PUT')" v-bind:class="{ 'btn btn-success' : btn.PUT, 'btn btn-default': !btn.PUT }" disabled>PUT</button>
+						</div>
+						<div class="btn-group">
+							<button v-on:click="selectType('DELETE')" v-bind:class="{ 'btn btn-success' : btn.DELETE, 'btn btn-default': !btn.DELETE }"
+							 disabled>DELETE</button>
+						</div>
 					</div>
+				</div>
+
+				<div class="input-group">
+					<span class="input-group-addon">Controller Name</span>
+					<input v-model="root" v-on:keyup="generateCode()" class="form-control" placeholder="Controller Name" required>
+				</div>
+
+				<div class="input-group">
+					<span class="input-group-addon" style="padding-right: 19px;">Function Name</span>
+					<input v-model="funName" v-on:keyup="generateCode()" class="form-control" placeholder="Function Name" required>
 				</div>
 
 				<div class="form-group">
 					<div class="form-inline">
-						<label>Controller Name : </label>
-						<input v-model="root" v-on:keyup="generateCode" class="form-control" placeholder="Controller Name" required>
+						<a href="#" v-on:click="addParam">
+							<span class="glyphicon glyphicon-plus"></span> Add Parmas</a>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<div class="form-inline">
-						<label>Function Name : </label>
-						<input v-model="funName" v-on:keyup="generateCode" class="form-control" placeholder="Function Name" required>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="form-inline">
-						<a href="#" v-on:click="addParam"><span class="glyphicon glyphicon-plus"></span> Add Parmas</a>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div v-for="item in params" class="form-group">
+				<div v-for="item in params">
+					<div class="input-group">
 						<input v-model="item.name" v-on:keyup="generateCode(); save();" class="form-control" placeholder="Param Name" required>
+						<div class="input-group-btn">
+							<button v-on:click="delParam(item);" class="btn btn-danger">
+								<i class="glyphicon glyphicon-trash"></i>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -88,31 +116,32 @@
 					<svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16">
 						<path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
 					</svg>
-					<strong> GitHub :</strong> <a href="https://github.com/ITCSsDeveloper/Slim-REST-Generator" target="_blank">https://github.com/ITCSsDeveloper/Slim-REST-Generator</a>
+					<strong> GitHub :</strong>
+					<a href="https://github.com/ITCSsDeveloper/Slim-REST-Generator" target="_blank">https://github.com/ITCSsDeveloper/Slim-REST-Generator</a>
 				</div>
-
 			</div>
+			<!--  Div Display Code  -->
 		</div>
 	</div>
 	<!-- End Of Container -->
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js"></script>
 	<script src="https://www.samclarke.com/js/prism.js"></script>
-
 	<script>
+		var _data = {
+			autoSave: true,
+			filter: false,
+			tryCatch: false,
+			btn: { GET: false, POST: false, PUT: false, DELETE: false },
+			root: '',
+			funName: '',
+			type: '',
+			params: [],
+			output: ''
+		}
+
 		var app = new Vue({
 			el: '#app',
-			data: {
-				autoSave: true,
-				filter: false,
-				tryCatch: false,
-				btn: { GET: false, POST: false, PUT: false, DELETE: false },
-				root: '',
-				funName: '',
-				type: '',
-				params: [],
-				output: ''
-			},
+			data: _data,
 			methods: {
 				selectType: function (x) {
 					this.type = x
@@ -120,8 +149,8 @@
 
 					if (x == 'GET') this.btn.GET = true
 					else if (x == 'POST') this.btn.POST = true
-					else if (x == 'PUT') this.btn.PUT = true
-					else if (x == 'DELETE') this.btn.DELETE = true
+					//else if (x == 'PUT') this.btn.PUT = true
+					//else if (x == 'DELETE') this.btn.DELETE = true
 
 					this.generateCode()
 				},
@@ -182,6 +211,10 @@
 					setTimeout(function () { Prism.highlightAll(); }, 0);
 					this.save()
 				},
+				delParam: function (_item) {
+					this.params.splice(_item, 1)
+					this.generateCode()
+				},
 				save: function () {
 					if (this.autoSave) {
 						localStorage.tempData = JSON.stringify(this._data)
@@ -196,25 +229,29 @@
 				reset: function () {
 					this.clear()
 					location.reload()
+				},
+			},
+			mounted: function () {
+				try {
+					if (localStorage.tempData !== 'undefined') {
+						temp = JSON.parse(localStorage.tempData)
+						this.tryCatch = temp.tryCatch
+						this.autoSave = temp.autoSave
+						this.filter = temp.filter
+						this.btn = temp.btn
+						this.root = temp.root
+						this.funName = temp.funName
+						this.type = temp.type
+						this.params = temp.params
+						this.output = temp.output
+						temp = null
+					}
+				}
+				catch (err) {
+					this.generateCode()
 				}
 			}
 		});
-
-		if (localStorage.tempData != undefined && localStorage.tempData != "undefined") {
-			temp = JSON.parse(localStorage.tempData)
-			app._data.tryCatch = temp.tryCatch
-			app._data.autoSave = temp.autoSave
-			app._data.filter = temp.filter
-			app._data.btn = temp.btn
-			app._data.root = temp.root
-			app._data.funName = temp.funName
-			app._data.type = temp.type
-			app._data.params = temp.params
-			app._data.output = temp.output
-		}
-
-		app.generateCode()
 	</script>
 </body>
-
 </html>

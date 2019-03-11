@@ -10,10 +10,10 @@
 	<meta name="author" content="Ratchanon Chompuboot">
 	<link rel="shortcut icon" type="image/x-icon" href="ico.png">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link href="https://rawgit.com/michaelsoriano/bootstrap-photo-gallery/master/jquery.bsPhotoGallery.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link href="css/jquery.bsPhotoGallery.css" rel="stylesheet">
 
 	<style type="text/css">
 		.data-td{
@@ -29,7 +29,7 @@
 				<div class="col-md-12 text-center">
 					<img class=" img-circle" width="150px" src="profile.jpg" >
 					<h2 class="hero-title"><strong>Ratchanon Chompuboot</strong> </h2>
-					<p class="hero-tagline"> <span class="typelist-skill">Full Stack .NET Developer</span>  </p>
+					<p class="hero-tagline"> <span class="typelist-skill">Full-Stack .NET Web Developer</span>  </p>
 
 					  <!-- <p>Tel :&nbsp; <a href="tel:0900303314" target="_blank">090-030-3314</a></p>
 					<p>Email :&nbsp;<a href="mailto:it.sunday.develop@gmail.com" target="_blank">it.sunday.develop@gmail.com</a></p>
@@ -37,7 +37,7 @@
 					<p>Facebook :&nbsp;<a href="https://www.facebook.com/GmtanBeartai2010" target="_blank">https://www.facebook.com/GmtanBeartai2010</a></p>   -->
 
 					<p>Tel :&nbsp; <a target="_blank">090-030-3314</a></p>
-					<p>Email :&nbsp;<a target="_blank">it.sunday.develop@gmail.com</a></p>
+					<p>Email :&nbsp;<a target="_blank">ratchanon.c@outlook.com</a></p>
 					<p>GitHub :&nbsp;<a target="_blank">https://github.com/ITCSsDevloper</a></p>
 					<p>Facebook :&nbsp;<a target="_blank">https://www.facebook.com/GmtanBeartai2010</a></p>  
 				</div> <!-- END col-md-12-->  
@@ -50,8 +50,8 @@
             <ul>
                 <li>Design and Develop Software from user requirement.</li>
                 <li>Looking for an innovative and challenging.</li>
-                <li>Looking for enjoy community.</li>
-                <li>Looking for progress in the job</li>
+                <!-- <li>Looking for enjoy community.</li> -->
+                <!-- <li>Looking for progress in the job</li> -->
                 <li>Expect Salary 32,000 - 35,000 (Negotiable)</li>
             </ul>
 		</div> <!-- END col-md-12-->  
@@ -71,7 +71,7 @@
 				</tr>
 				<tr>
 					<td class="data-td">Age </td>
-					<td>: 23 years</td>
+					<td >: <span id="txt-age">2*</span> years</td>
 				</tr>
 				<tr>
 					<td class="data-td">Date of Birth </td>
@@ -136,7 +136,7 @@
                 <li>
                     <strong>OneCall CO., LTD. </strong> (October 16, 2017 to present)
                     <ul>
-                        <li><strong>Position</strong> : Full-stack .NET Developer</li>
+                        <li><strong>Position</strong> : Full-Stack .NET Web Developer</li>
                         <li><strong>Developing software for </strong> : Siam Commercial Bank (SCB)</li>
                         <li>
                             <strong>Responsibilities  :</strong>
@@ -177,7 +177,7 @@
 		<div class="col-md-12 text-center">
 			<hr/>
 			<h1>Thank you.</h1>
-			<a href="Resume_RatchanonChompuboot_v3.pdf" target="_blank" class="btn btn-success" style="width: 250px;">Download Resume (PDF)</a>
+			<a href="Resume_RatchanonChompuboot_2019_v1.pdf" target="_blank" class="btn btn-success" style="width: 250px;">Download Resume (PDF)</a>
 			<br><br>
                 <button class="btn btn-sm btn-default" onclick="$( '#myGallery' ).toggle('slow'); $(this).hide();">My Gallery 2017..</button>
 		</div>
@@ -213,16 +213,28 @@
 		</div><!-- END col-md-12-->  
 	</div><!-- END row-->
 </div> <!-- End container -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://rawgit.com/michaelsoriano/bootstrap-photo-gallery/master/jquery.bsPhotoGallery.js"></script>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.bsPhotoGallery.js"></script>
 
 <script type="text/javascript">
+	function calculate_age(dob) { 
+		var diff_ms = Date.now() - dob.getTime();
+		var age_dt = new Date(diff_ms); 
+	
+		return Math.abs(age_dt.getUTCFullYear() - 1970);
+	}
+
 	$(function(){
+		$("#txt-age").html(calculate_age(new Date(1994, 04, 23)));
+
 		$('ul.first').bsPhotoGallery({
 			'classes' : 'col-lg-2 col-md-4 col-sm-3 col-xs-4 col-xxs-12',
 			'hasModal' : true
 		});
+
+		
 	});
 </script>
 </body>
